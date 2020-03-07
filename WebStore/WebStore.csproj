@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>H:\Курс C# ASP 1\Project\WebStore\WebStore\WebStore.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
