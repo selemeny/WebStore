@@ -8,4 +8,8 @@
     <DocumentationFile>H:\Курс C# ASP 1\Project\WebStore\WebStore\WebStore.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

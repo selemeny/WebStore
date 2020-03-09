@@ -31,6 +31,9 @@ namespace WebStore
 				app.UseDeveloperExceptionPage();
 			}
 
+			app.UseStaticFiles("wwwroot"); // Статические файлы
+			app.UseDefaultFiles("");
+
 			app.UseRouting();
 
 
