@@ -21,6 +21,8 @@ namespace WebStore
 		
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//services.AddMvc(); // dspjd для core 2.2
+			services.AddControllersWithViews(); // Добавляем контроллеры
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,18 +33,23 @@ namespace WebStore
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseStaticFiles("wwwroot"); // Статические файлы
-			app.UseDefaultFiles("");
+			app.UseStaticFiles(); // Статические файлы
+			app.UseDefaultFiles();
 
 			app.UseRouting();
 
 
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapGet("/", async context =>
+				endpoints.MapGet("/greetings", async context =>
 				{
 					await context.Response.WriteAsync(configuration["CustomGreetings"]);
 				});
+
+				endpoints.MapControllerRoute(
+					name: "default",
+					pattern: "{controller=Home}/{action=Index}/{id?}"
+					); // http://localhost:5000/Home/Index/id (Home = Controller Name; Index = Action Name; id = параметр)
 			});
 		}
 	}
