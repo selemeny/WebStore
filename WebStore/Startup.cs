@@ -22,8 +22,10 @@ namespace WebStore
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//services.AddMvc(); // dspjd дл€ core 2.2
-			services.AddControllersWithViews(); // ƒобавл€ем контроллеры
+			services.AddControllersWithViews().AddRazorRuntimeCompilation(); // ƒобавл€ем контроллеры
+																			 // AddRazorRuntimeCompilation - при изменении представлени€ - автоматически перекомпилируетс€ при запущенном приложении
 		}
+
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
