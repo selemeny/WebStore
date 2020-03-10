@@ -37,21 +37,19 @@ namespace WebStore.Controllers
             }
         };
 
+
         public IActionResult Index()
         {
             return View();
             //return View("OtherViewName");
         }
 
-        public IActionResult SomeAction()
-        {
-            return View();
-        }
 
-        public IActionResult Employees()
-        {
-            return View(_employees);
-        }
+        public IActionResult SomeAction => View();
+
+
+        public IActionResult Employees => View(_employees);
+
 
         public IActionResult Employee(int Id)
         {
@@ -61,5 +59,16 @@ namespace WebStore.Controllers
 
             return View(employee);
         }
+
+
+        public IActionResult Error404() => View();
+        public IActionResult Blog() => View();
+        public IActionResult BlogSingle() => View();
+        public IActionResult Cart() => View();
+        public IActionResult CheckOut() => View();
+        public IActionResult ContactUs() => View();
+        public IActionResult Login() => View();
+        public IActionResult Shop() => View();
+        public IActionResult ProductDetails() => View();
     }
 }
