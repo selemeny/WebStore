@@ -45,10 +45,10 @@ namespace WebStore.Controllers
         }
 
 
-        public IActionResult SomeAction => View();
+        public IActionResult SomeAction() => View();
 
 
-        public IActionResult Employees => View(_employees);
+        public IActionResult Employees() => View(_employees);
 
 
         public IActionResult Employee(int Id)
