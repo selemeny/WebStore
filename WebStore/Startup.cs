@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStore.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Services;
 
 namespace WebStore
 {
@@ -24,6 +26,15 @@ namespace WebStore
 			//services.AddMvc(); // dspjd дл€ core 2.2
 			services.AddControllersWithViews().AddRazorRuntimeCompilation(); // ƒобавл€ем контроллеры
 																			 // AddRazorRuntimeCompilation - при изменении представлени€ - автоматически перекомпилируетс€ при запущенном приложении
+
+
+			// –егистрируем в сервисе
+			// AddTransient - каждый раз будет создаватьс€ экземпл€р сервиса
+			// AddScoped - один экземпл€р на область видимости
+			// AddSingleton - один объект на все врем€ жизни приложени€
+			//services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+			//services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
+			services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
 		}
 
 
