@@ -32,7 +32,7 @@ namespace WebStore
 		{
 			if (env.IsDevelopment())
 			{
-				app.UseDeveloperExceptionPage();
+				app.UseDeveloperExceptionPage(); // Отображает все ошибки при разработки
 				app.UseBrowserLink();
 			}
 
@@ -41,6 +41,7 @@ namespace WebStore
 
 			app.UseRouting();
 
+			app.UseWelcomePage("/welcome");
 
 			app.UseEndpoints(endpoints =>
 			{
