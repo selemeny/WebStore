@@ -29,5 +29,41 @@ namespace WebStore.Controllers
 
             return View(employee);
         }
+
+
+
+        public IActionResult Edit(int? id)
+        {
+            if (id is null) 
+                return View(new Employee());
+            if (id < 0)
+                return BadRequest();
+
+            var employee = _employees.GetById((int)id);
+            if (employee is null)
+                return NotFound();
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Employee employee)
+        {
+            if (employee is null)
+                throw new ArgumentNullException(nameof(Employee));
+
+            if (!ModelState.IsValid)
+                return View(employee);
+
+            var id = employee.Id;
+            if (id == 0)
+                _employees.Add(employee);
+            else
+                _employees.Edit(id, employee);
+
+            _employees.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
