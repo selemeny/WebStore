@@ -20,6 +20,8 @@ namespace WebStore.Infrastructure.Services
 			if (_employees.Contains(employee))
 				return;
 			employee.Id = _employees.Count == 0 ? 1 : _employees.Max(x => x.Id) + 1;
+
+			_employees.Add(employee);
 		}
 
 		public bool Delete(int id)
