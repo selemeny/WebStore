@@ -104,6 +104,12 @@ namespace WebStore.Controllers
             if (!ModelState.IsValid)
                 return View(employee);
 
+            if (employee.Name == "123" && employee.SecondName == "QWE")
+                ModelState.AddModelError(string.Empty, "Странные имя и фамилия...");
+
+            if (!ModelState.IsValid)
+                return View(employee);
+
             var id = employee.Id;
             if (id == 0)
                 _employeesData.Add(new Employee
