@@ -12,6 +12,19 @@ namespace WebStore.Infrastructure.Services
     {
         public IEnumerable<Brand> GetBrands() => TestData.Brands;
 
+        public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
+        {
+            var query = TestData.Products;
+
+            if (Filter?.SectionId != null)
+                query = query.Where(x => x.SectionId == Filter.SectionId);
+
+            if (Filter?.BrandId != null)
+                query = query.Where(x => x.BrandId == Filter.BrandId);
+
+            return query;
+        }
+
         public IEnumerable<Section> GetSections() => TestData.Sections;
     }
 }

@@ -16,10 +16,18 @@ namespace WebStore.Infrastructure.Interfaces
         /// </summary>
         /// <returns></returns>
         IEnumerable<Section> GetSections();
+
         /// <summary>
         /// Получить все бренды
         /// </summary>
         /// <returns></returns>
         IEnumerable<Brand> GetBrands();
+
+        /// <summary>
+        /// Товары из каталога
+        /// </summary>
+        /// <param name="Filters">Критерии поиска/фильтрации</param>
+        /// <returns></returns>
+        IEnumerable<Product> GetProducts(ProductFilter Filters = null);
     }
 }
