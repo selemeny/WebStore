@@ -6,7 +6,7 @@ namespace WebStore.Domain.Entities
     /// <summary>
     /// Секция товаров
     /// </summary>
-    public class Section : NameEntity, IOrderedEntity
+    public class Section : NamedEntity, IOrderedEntity
     {
         public int Order { get; set; }
         /// <summary>

@@ -9,7 +9,7 @@ namespace WebStore.Domain.Entities
     /// <summary>
     /// Бренд
     /// </summary>
-    public class Brand : NameEntity, IOrderedEntity
+    public class Brand : NamedEntity, IOrderedEntity
     {
         public int Order { get; set; }
     }
