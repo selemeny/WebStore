@@ -7,7 +7,7 @@ using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.ViewModels
 {
-    public class SectionViewModel : INameEntity, IOrderedEntity
+    public class SectionViewModel : INamedEntity, IOrderedEntity
     {
         public int Id { get; set; }
         public int Order { get; set; }

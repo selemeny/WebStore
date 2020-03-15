@@ -3,7 +3,7 @@
     /// <summary>
     /// Именованая сущность
     /// </summary>
-    public interface INameEntity : IBaseEntity
+    public interface INamedEntity : IBaseEntity
     {
         /// <summary>
         /// Название
