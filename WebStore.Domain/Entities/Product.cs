@@ -27,6 +27,8 @@ namespace WebStore.Domain.Entities
         [Column(TypeName ="decimal(18,2)")]// 18 знаков, из них 2 после запятой
         public decimal Price{ get; set; }
 
+        public string Description { get; set; }
+
         [NotMapped]
         public int NotMappedProperty { get; set; } // Свойство не сохраняемое в БД
     }
