@@ -1,4 +1,6 @@
 ﻿@using WebStore.Infrastructure.Interfaces
+@using WebStore.Infrastructure.Mapping
+
 <partial name="Partial/_Slider" />
 
 <section>
@@ -11,14 +13,8 @@
 
                 @inject IProductData  catalog;
                 @{
-                    var products = catalog.GetProducts().Select(x => new ProductViewModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name,
-                        Order = x.Order,
-                        ImageUrl = x.ImageUrl,
-                        Price = x.Price
-                    });
+                    //var products = catalog.GetProducts().Select(x => x.ToView());
+                    var products = catalog.GetProducts().ToView();
                 }
 
                 <partial name="Partial/_FeaturesItems" model="products"/>
