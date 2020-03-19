@@ -33,9 +33,9 @@ namespace WebStore.Data
             {
                 await db.Sections.AddRangeAsync(TestData.Sections).ConfigureAwait(false);
 
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSER [dbo].[Sections] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
+                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Sections] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
                 await db.SaveChangesAsync().ConfigureAwait(false);
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSER [dbo].[Sections] OFF");
+                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Sections] OFF");
 
                 await Transaction.CommitAsync().ConfigureAwait(false);
             }
@@ -44,9 +44,9 @@ namespace WebStore.Data
             {
                 await db.Brands.AddRangeAsync(TestData.Brands).ConfigureAwait(false);
 
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSER [dbo].[Brands] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
+                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Brands] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
                 await db.SaveChangesAsync().ConfigureAwait(false);
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSER [dbo].[Brands] OFF");
+                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Brands] OFF");
 
                 await Transaction.CommitAsync().ConfigureAwait(false);
             }
@@ -55,9 +55,9 @@ namespace WebStore.Data
             {
                 await db.Products.AddRangeAsync(TestData.Products).ConfigureAwait(false);
 
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSER [dbo].[Products] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
+                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Products] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
                 await db.SaveChangesAsync().ConfigureAwait(false);
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSER [dbo].[Products] OFF");
+                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Products] OFF");
 
                 await Transaction.CommitAsync().ConfigureAwait(false);
             }

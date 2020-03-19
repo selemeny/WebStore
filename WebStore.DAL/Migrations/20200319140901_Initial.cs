@@ -2,11 +2,6 @@
 
 namespace WebStore.DAL.Migrations
 {
-    /// <summary>
-    /// Консоль диспетчера пакетов Nuget:
-    ///         Add-Migration Initial
-    ///         Update-Database
-    /// </summary>
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +52,8 @@ namespace WebStore.DAL.Migrations
                     SectionId = table.Column<int>(nullable: false),
                     BrandId = table.Column<int>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
