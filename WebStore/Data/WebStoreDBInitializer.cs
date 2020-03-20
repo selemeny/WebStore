@@ -26,6 +26,20 @@ namespace WebStore.Data
 
             await database.MigrateAsync().ConfigureAwait(false);
 
+            if(!await db.Employees.AnyAsync())
+            {
+                using (var Transaction = await database.BeginTransactionAsync().ConfigureAwait(false))
+                {
+                    await db.Employees.AddRangeAsync(TestData.Employees).ConfigureAwait(false);
+
+                    await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Employees] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
+                    await db.SaveChangesAsync().ConfigureAwait(false);
+                    await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Employees] OFF");
+
+                    await Transaction.CommitAsync().ConfigureAwait(false);
+                }
+            }
+
             if (await db.Products.AnyAsync())
                 return;
 
@@ -62,16 +76,7 @@ namespace WebStore.Data
                 await Transaction.CommitAsync().ConfigureAwait(false);
             }
 
-            using (var Transaction = await database.BeginTransactionAsync().ConfigureAwait(false))
-            {
-                await db.Employees.AddRangeAsync(TestData.Employees).ConfigureAwait(false);
-
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Employees] ON");// Разрешаем базе вставлять свой первичный кюч ID и внешний ключ ~ParentId, т.к. в TestData у нас прописаны эти данные
-                await db.SaveChangesAsync().ConfigureAwait(false);
-                await database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Employees] OFF");
-
-                await Transaction.CommitAsync().ConfigureAwait(false);
-            }
+            
 
         }
     }
