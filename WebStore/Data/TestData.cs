@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.Entities;
-using WebStore.Models;
 
 namespace WebStore.Data
 {
@@ -15,7 +14,7 @@ namespace WebStore.Data
             {
                 Id = 1,
                 SurName = "Иванов",
-                FirstName = "Иван",
+                Name = "Иван",
                 Patronymic = "Иванович",
                 Age = 39
             },
@@ -23,7 +22,7 @@ namespace WebStore.Data
             {
                 Id = 2,
                 SurName = "Петров",
-                FirstName = "Петр",
+                Name = "Петр",
                 Patronymic = "Петрович",
                 Age = 18
             },
@@ -31,7 +30,7 @@ namespace WebStore.Data
             {
                 Id = 3,
                 SurName = "Сидоров",
-                FirstName = "Сидор",
+                Name = "Сидор",
                 Patronymic = "Сидорович",
                 Age = 27
             }
