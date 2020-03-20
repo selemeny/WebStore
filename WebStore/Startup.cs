@@ -42,7 +42,8 @@ namespace WebStore
 			// AddSingleton - один объект на все время жизни приложения
 			//services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
 			//services.AddScoped<IEmployeesData, InMemoryEmployeesData>();
-			services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+			//services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+			services.AddScoped<IEmployeesData, SqlEmployeeData>();
 			//services.AddSingleton<IProductData, InMemoryProductData>();
 			services.AddScoped<IProductData, SqlProductData>();
 		}
