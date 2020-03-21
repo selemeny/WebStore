@@ -63,7 +63,7 @@ namespace WebStore
 			{
 				opt.Cookie.Name = "WebStore";	// Имя куки
 				opt.Cookie.HttpOnly = true;   // Куки только по Http протоколу
-				opt.Cookie.Expiration = TimeSpan.FromDays(10);   // Время жизни куки
+				opt.ExpireTimeSpan = TimeSpan.FromDays(10);   // Время жизни куки
 
 				opt.LoginPath = "/Account/Login";   // Путь к авторизации, когда юзер не авторизован, а для просмотра нужна авторизация, по этому пути будет редирект
 				opt.LogoutPath = "/Account/Logout"; // Путь для разавторизации
