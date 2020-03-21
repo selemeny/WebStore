@@ -45,15 +45,38 @@ namespace WebStore.Controllers
             }
 
             foreach (var error in registerResult.Errors)
-                ModelState.AddModelError(error.Code, error.Description);
+                ModelState.AddModelError("", error.Description);
 
             return View(Model);
         }
         #endregion
 
 
-        public IActionResult Login() => View(new LoginViewModel());
+        public IActionResult Login(string ReturnUrl) => View(new LoginViewModel { ReturnUrl = ReturnUrl});
 
-        public IActionResult Logout() => RedirectToAction("Index", "Home");
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel Model) 
+        {
+            if (!ModelState.IsValid) return View(Model);
+
+            var loginResult = await signInManager.PasswordSignInAsync(Model.UserName, Model.Password, Model.RememberMe, false);
+
+            if (loginResult.Succeeded)
+            {
+                if (Url.IsLocalUrl(Model.ReturnUrl))
+                    return Redirect(Model.ReturnUrl);
+                RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError("", "Не верное имя пользователя или пароль.");
+
+            return View(Model);
+        }
+
+        public async Task<IActionResult> Logout() 
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

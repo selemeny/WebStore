@@ -11,11 +11,15 @@
                 <div class="login-form">
                     <!--login form-->
                     <h2>Добро пожаловать</h2>
-                    <form>
-                        <input placeholder="Имя пользователя" />
-                        <input placeholder="Пароль" />
+                    <form asp-controller="Account" asp-action="Login" asp-antiforgery="true" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        @Html.HiddenFor(model => model.ReturnUrl)
+
+                        <input asp-for="UserName" placeholder="Имя пользователя" />
+                        <input asp-for="Password" placeholder="Пароль" />
                         <span>
-                            <input class="checkbox">
+                            <input asp-for="RememberMe" class="checkbox">
                             Запомнить меня
                         </span>
                         <button type="submit" class="btn btn-default">Вход</button>
@@ -29,14 +33,14 @@
                 <div class="signup-form">
                     <!--sign up form-->
                     <h2>Зарегистрироваться</h2>
-                    <form >
-                        <div class="text-danger"></div>
+                    <form asp-controller="Account" asp-action="Register" asp-antiforgery="true" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <input placeholder="Имя пользователя" />
-                        <span class="text-danger"></span>
+                        <input asp-for="UserName" placeholder="Имя пользователя" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
 
-                        <input placeholder="Пароль" />
-                        <span class="text-danger"></span>
+                        <input asp-for="Password" placeholder="Пароль" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
 
                         <input name="ConfirmPassword" id="ConfirmPassword" placeholder="Повторить пароль" />
 
