@@ -20,11 +20,15 @@ namespace WebStore.Controllers
         public IActionResult Throw(string id) => throw new ApplicationException(id);
 
         public IActionResult Error404() => View();
+
         public IActionResult Blog() => View();
+
         public IActionResult BlogSingle() => View();
+
         public IActionResult Cart() => View();
+
         public IActionResult CheckOut() => View();
+
         public IActionResult ContactUs() => View();
-        public IActionResult Login() => View();
     }
 }
