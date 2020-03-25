@@ -10,7 +10,7 @@ namespace WebStore.Domain.Entities.Identity
         //public string Description { get; set; }
 
         public const string Administrator = "Admin";
-        public const string DefaultPassword = "AdminPassword";
+        public const string AdminDefaultPassword = "AdminPassword";
 
     }
 }

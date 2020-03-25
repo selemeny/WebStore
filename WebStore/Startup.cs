@@ -108,9 +108,10 @@ namespace WebStore
 			app.UseStaticFiles(); // Статические файлы
 			app.UseDefaultFiles();
 
-			app.UseAuthentication();
-
 			app.UseRouting();
+
+			app.UseAuthentication();
+			app.UseAuthorization();
 
 			app.UseWelcomePage("/welcome");
 
