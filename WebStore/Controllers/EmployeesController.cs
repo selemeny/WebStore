@@ -8,10 +8,13 @@ using WebStore.Infrastructure.Interfaces;
 using WebStore.ViewModels;
 using WebStore.Infrastructure.Mapping;
 using WebStore.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using WebStore.Domain.Entities.Identity;
 
 namespace WebStore.Controllers
 {
     //[Route("users")]
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly IEmployeesData _employeesData;
@@ -33,12 +36,14 @@ namespace WebStore.Controllers
         }
 
 
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Create()
         {
             return View(new EmployeeViewModel());
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Create(EmployeeViewModel employee)
         {
             if (employee is null)
@@ -54,6 +59,7 @@ namespace WebStore.Controllers
         }
 
 
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Edit(int? id)
         {
             if (id is null) 
@@ -68,7 +74,8 @@ namespace WebStore.Controllers
             return View(employee.ToView());
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Edit(EmployeeViewModel employee)
         {
             if (employee is null)
@@ -95,6 +102,8 @@ namespace WebStore.Controllers
         }
 
 
+        [Authorize(Roles = Role.Administrator /*+ "," + Role.User*/)] // Если 2 роли через запятую = И
+        //[Authorize(Roles = Role.User)] // Если 2 роли по отдельности = ИЛИ
         public IActionResult Delete(int id)
         {
             if (id <= 0)
@@ -109,6 +118,7 @@ namespace WebStore.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult DeleteConfirmed(int id)
         {
             _employeesData.Delete(id);

@@ -14,6 +14,7 @@ using WebStore.DAL.Context;
 using WebStore.Data;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Services.InCookies;
 using WebStore.Infrastructure.Services.InMemory;
 using WebStore.Infrastructure.Services.InSQL;
 
@@ -91,6 +92,8 @@ namespace WebStore
 			services.AddScoped<IEmployeesData, SqlEmployeeData>();
 			//services.AddSingleton<IProductData, InMemoryProductData>();
 			services.AddScoped<IProductData, SqlProductData>();
+			services.AddScoped<ICartService, CookiesCartService>();
+
 		}
 
 
@@ -108,9 +111,10 @@ namespace WebStore
 			app.UseStaticFiles(); // Статические файлы
 			app.UseDefaultFiles();
 
-			app.UseAuthentication();
-
 			app.UseRouting();
+
+			app.UseAuthentication();
+			app.UseAuthorization();
 
 			app.UseWelcomePage("/welcome");
 
