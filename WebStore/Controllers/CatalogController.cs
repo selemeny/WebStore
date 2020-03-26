@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.Entities;
 using WebStore.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Mapping;
 using WebStore.ViewModels;
 
 namespace WebStore.Controllers
@@ -38,9 +39,15 @@ namespace WebStore.Controllers
                 }).OrderBy(x => x.Order)
             });
         }
-        public IActionResult Details()
+
+        public IActionResult Details(int id)
         {
-            return View();
+            var product = productData.GetProductById(id);
+
+            if (product is null)
+                return NotFound();
+
+            return View(product.ToView());
         }
     }
 }
