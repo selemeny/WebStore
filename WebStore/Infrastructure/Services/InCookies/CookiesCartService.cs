@@ -14,11 +14,11 @@ namespace WebStore.Infrastructure.Services.InCookies
 {
     public class CookiesCartService : ICartService
     {
-        private readonly string cartName;;
+        private readonly string cartName;
         private readonly IProductData productData;
-        private readonly HttpContextAccessor httpContextAccessor;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public CookiesCartService(IProductData productData, HttpContextAccessor httpContextAccessor)
+        public CookiesCartService(IProductData productData, IHttpContextAccessor httpContextAccessor)
         {
             this.productData = productData;
             this.httpContextAccessor = httpContextAccessor;
@@ -123,7 +123,7 @@ namespace WebStore.Infrastructure.Services.InCookies
                 Items = Cart.Items.ToDictionary(
                     item => productViewModel.First(x => x.Id == item.ProductId),
                     item => item.Quantity
-            };
+            )};
         }
     }
 }

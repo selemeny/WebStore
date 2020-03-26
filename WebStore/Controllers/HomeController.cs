@@ -25,7 +25,7 @@ namespace WebStore.Controllers
 
         public IActionResult BlogSingle() => View();
 
-        public IActionResult Cart() => View();
+        //public IActionResult Cart() => View(); // была корзина в Views -> Home -> Cart.cshtml
 
         public IActionResult CheckOut() => View();
 
