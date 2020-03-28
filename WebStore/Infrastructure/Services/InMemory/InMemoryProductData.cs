@@ -27,6 +27,7 @@ namespace WebStore.Infrastructure.Services.InMemory
             return query;
         }
 
+
         public IEnumerable<Section> GetSections() => TestData.Sections;
     }
 }
