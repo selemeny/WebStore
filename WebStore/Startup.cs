@@ -129,7 +129,12 @@ namespace WebStore
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}"
 					); // http://localhost:5000/Home/Index/id (Home = Controller Name; Index = Action Name; id = параметр)
-			});
+
+				endpoints.MapControllerRoute(
+					name: "areas",
+					pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+					);
+			}
 		}
 	}
 }
