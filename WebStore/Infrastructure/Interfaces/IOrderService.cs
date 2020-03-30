@@ -14,6 +14,6 @@ namespace WebStore.Infrastructure.Interfaces
 
         Order GetOrderById(int id);
 
-        Order CreateOrder(string Username, CartViewModel cart, OrderViewModel orderModel);
+        Task<Order> CreateOrderAsync(string Username, CartViewModel cart, OrderViewModel orderModel);
     }
 }
