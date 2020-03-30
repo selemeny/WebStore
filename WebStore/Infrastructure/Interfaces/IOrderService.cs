@@ -8,7 +8,7 @@ using WebStore.ViewModels.Orders;
 
 namespace WebStore.Infrastructure.Interfaces
 {
-    interface IOrderService
+    public interface IOrderService
     {
         IEnumerable<Order> GetUserOrders(string Username);
 

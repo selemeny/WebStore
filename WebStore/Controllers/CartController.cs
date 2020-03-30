@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Infrastructure.Interfaces;
+using WebStore.ViewModels;
+using WebStore.ViewModels.Orders;
 
 namespace WebStore.Controllers
 {
@@ -14,7 +16,11 @@ namespace WebStore.Controllers
         public CartController(ICartService cartService) => this.cartService = cartService;
 
 
-        public IActionResult Details() => View(cartService.TransformFromCart());
+        public IActionResult Details() => View(new CartOrderViewModel 
+        { 
+            CartViewModel = cartService.TransformFromCart(), 
+            OrderViewModel = new OrderViewModel() 
+        });
 
         public IActionResult AddToCart(int id)
         {
@@ -38,6 +44,29 @@ namespace WebStore.Controllers
         {
             cartService.RemoveAll();
             return RedirectToAction(nameof(Details));
+        }
+
+        public async Task<IActionResult> CheckOut(OrderViewModel model, [FromServices] IOrderService orderService)
+        {
+            if (!ModelState.IsValid)
+                return View(nameof(Details), new CartOrderViewModel 
+                {
+                    CartViewModel = cartService.TransformFromCart(),
+                    OrderViewModel = model
+                });
+
+            var order = await orderService.CreateOrderAsync(User.Identity.Name, cartService.TransformFromCart(), model);
+
+            cartService.RemoveAll();
+
+            return RedirectToAction(nameof(OrderConfirmed), new { id = order.Id });
+        }
+
+        public IActionResult OrderConfirmed(int id)
+        {
+            ViewBag.OrderId = id; // ViewBag - динамич. объект. можно указывать любые свойства для передачи.
+
+            return View();
         }
     }
 }
